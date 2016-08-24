@@ -1,4 +1,4 @@
-## **ALGORITHMS-PRACTICES**
+## **ALGORITHMS-PRACTICES (SWIFT)**
 
 Simple Repo for all my algorithms practices.
 A lot of this algorithms use "brute force" because i'm still trying to understand some of the basic stuff before refactoring :)

@@ -1,5 +1,5 @@
 // Get Word With Most Letters by Wilson Muñoz
-// This also can deliver the number of charachters of that word using map["number] as! String intead of the
+// This also can deliver the number of charachters of that word using map["number] as! Int intead of the
 // "word"
 
 import UIKit
