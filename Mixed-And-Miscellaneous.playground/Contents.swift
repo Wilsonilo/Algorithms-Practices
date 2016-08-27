@@ -1,4 +1,4 @@
-//This is just a Playground to save annotations and other stuff.
+//Mix of random functions and implementations.
 
 import UIKit
 
@@ -13,3 +13,16 @@ func areTheyEqual<T: Equatable>(x: T, _ y: T) -> Bool {
 }
 
 areTheyEqual(1, 2)
+
+
+//Swap with Generics
+func swapTwoValues<T>(inout a: T, inout _ b: T) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+
+var someString = "hello"
+var anotherString = "world"
+swapTwoValues(&someString, &anotherString)
+print(someString)
