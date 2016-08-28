@@ -88,10 +88,51 @@ public class BinarySearchTree<T: Comparable> {
         }
     }
     
+    public func depth() -> Int {
+        var node = self
+        var edges = 0
+        while case let parent? = node.parent {
+            node = parent
+            edges += 1
+        }
+        return edges
+    }
+    
+    public func leftSide(var node: BinarySearchTree) -> Int{
+        
+        var counter:Int = 0
+
+        while(node.hasLeftChild) {
+            node = node.left!
+            counter += 1
+        }
+        
+        return counter
+    }
+    
+    
+    public func rightSide(var node: BinarySearchTree) -> Int{
+        
+        var counter:Int = 0
+        
+        while(node.hasRightChild) {
+            node = node.right!
+            counter += 1
+        }
+        
+        return counter
+    }
+    
 
 }
 
 
+public func countNodes(node: BinarySearchTree<Int>)-> Int{
+    
+    
+    return (countNodes(node.left!) + countNodes(node.right!))
+    
+}
 
 
 extension BinarySearchTree: CustomStringConvertible {
@@ -110,6 +151,7 @@ extension BinarySearchTree: CustomStringConvertible {
     }
     
     
+    
 
 }
 
@@ -119,44 +161,8 @@ extension BinarySearchTree: CustomStringConvertible {
 //Get Number of nodes by Level - Wilson Muñoz.
 //Based on the notes of: Freeze Francis
 //http://stackoverflow.com/questions/31172940/counting-number-of-nodes-in-a-complete-binary-tree
-func leftSide(var node: BinarySearchTree<Int>) -> Int{
-    
-    var counter:Int = 0
-
-    while(node.hasLeftChild) {
-        node = node.left!
-        counter += 1
-    }
-    
-    return counter
-}
 
 
-func rightSide(var node: BinarySearchTree<Int>) -> Int{
-    
-    var counter:Int = 0
-
-    while(node.hasRightChild) {
-        node = node.right!
-        counter += 1
-    }
-    
-    return counter
-}
-
-func countNodes(node: BinarySearchTree<Int>) -> Int{
-    
-    
-    let left = leftSide(node)
-    let right = rightSide(node)
-    
-        if(left % right == 0){
-            return 2 * 2
-        }
-    
-    return (countNodes(node.left!)+countNodes(node.right!))
-
-}
 
 
 
@@ -170,4 +176,4 @@ tree.insert(1)
 
 tree.height()
 
-countNodes(tree)
+tree.rightSide(tree.rightSide(tree.right!))
