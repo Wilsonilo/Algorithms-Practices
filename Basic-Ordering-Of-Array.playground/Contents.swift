@@ -41,7 +41,7 @@ insertionSort(numberList)
 
 
 //Application by Matthijs Hollemans
-//There is a better approach without Swaping, but i do not care for now using this one.
+//There is a better approach without Swaping, but for now i'm using this one.
 //For my level of understanding is enough otherwise i feel my head will explode.
 func insertionSortNew(array: [Int]) -> [Int] {
     var a = array                             // Set Array
