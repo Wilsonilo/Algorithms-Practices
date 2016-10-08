@@ -98,12 +98,12 @@ public class BinarySearchTree<T: Comparable> {
         return edges
     }
     
-    public func leftSide(var node: BinarySearchTree) -> Int{
+    public func leftSide() -> Int{
         
         var counter:Int = 0
-
-        while(node.hasLeftChild) {
-            node = node.left!
+        self.left = parent?.left
+        
+        while(self.hasLeftChild) {
             counter += 1
         }
         
@@ -111,28 +111,37 @@ public class BinarySearchTree<T: Comparable> {
     }
     
     
-    public func rightSide(var node: BinarySearchTree) -> Int{
+    public func rightSide() -> Int{
         
         var counter:Int = 0
         
-        while(node.hasRightChild) {
-            node = node.right!
+        self.right = parent?.right
+        
+        while(self.hasRightChild) {
             counter += 1
         }
         
         return counter
     }
     
+    public func countNodes(level: Int, count: Int)-> Int{
+        
+        if(count == level){
+            
+            return 1
+        
+        } else {
+        
+            return (countNodes(level, count: count+1) + countNodes(level, count: count+1))
+        }
+        
+        
+    }
+    
 
 }
 
 
-public func countNodes(node: BinarySearchTree<Int>)-> Int{
-    
-    
-    return (countNodes(node.left!) + countNodes(node.right!))
-    
-}
 
 
 extension BinarySearchTree: CustomStringConvertible {
@@ -171,9 +180,8 @@ tree.insert(2)
 tree.insert(5)
 tree.insert(10)
 tree.insert(9)
-tree.insert(1)
 
 
 tree.height()
 
-tree.rightSide(tree.rightSide(tree.right!))
+tree.countNodes(2, count: 0)
