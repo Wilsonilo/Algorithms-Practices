@@ -1,5 +1,4 @@
-//Basic O(n) search Brute Force - Wilson Muñoz
-
+//Linear Search
 
 import UIKit
 
@@ -15,7 +14,7 @@ func linearSearch(key: Int) {
     }
 }
 
-linearSearch(4)
+linearSearch(key: 4)
 
 
 

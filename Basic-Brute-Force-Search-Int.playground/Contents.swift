@@ -1,4 +1,4 @@
-// Basic "Brut Force" of find Int inside array.
+// Binary Search
 // By Wilson Muñoz
 
 //import UIKit
@@ -13,11 +13,11 @@ func binarySearch(key: Int, imin: Int, imax: Int) {
     
     //reduce the range
     if midNumber > key {
-        binarySearch(key, imin: imin, imax: Int(midIndex) - 1)
+        binarySearch(key: key, imin: imin, imax: Int(midIndex) - 1)
     }
     //increase the range
     else if (midNumber < key ) {
-        binarySearch(key, imin: Int(midIndex) + 1, imax: imax)
+        binarySearch(key: key, imin: Int(midIndex) + 1, imax: imax)
     }
     else {
         print("value \(key) found..")
@@ -25,4 +25,4 @@ func binarySearch(key: Int, imin: Int, imax: Int) {
     }
 }
 let max = numberList.count
-binarySearch(9, imin: 1, imax: 10)
+binarySearch(key: 9, imin: 1, imax: 10)
