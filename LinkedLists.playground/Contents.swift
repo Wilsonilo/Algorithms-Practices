@@ -72,6 +72,7 @@ class LinkedList<T>{
 			}
 		}
 	}
+	
 }
 
 
