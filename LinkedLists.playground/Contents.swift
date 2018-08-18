@@ -1,6 +1,6 @@
 import Foundation
 //Node, damm Playground
-class LinkedListNode<T>{
+class LinkedListNode<T:Equatable>{
 	var value:T
 	var next:LinkedListNode?
 	weak var previous:LinkedListNode?
@@ -8,12 +8,15 @@ class LinkedListNode<T>{
 	public init(value:T) {
 		self.value = value
 	}
+	static func == (lhs:LinkedListNode, rhs:LinkedListNode)->Bool{
+		return lhs.value == rhs.value
+	}
+	
 }
 //List
 class LinkedList<T>{
 	
-	
-	public typealias Node = LinkedListNode<T>
+	public typealias Node = LinkedListNode<String>
 	
 	var head:Node?
 	
@@ -47,7 +50,7 @@ class LinkedList<T>{
 	}
 	
 	//Add nodes to the tree
-	func addNode(value:T){
+	func addNode(value:String){
 		let newNode = Node(value: value)
 		if let lastNode = tail {
 			lastNode.next = newNode
@@ -63,14 +66,43 @@ class LinkedList<T>{
 			head?.next?.previous = nil
 			head = head?.next
 		} else {
-			var node = head // 1
+			var node = head // Before looping your starting node is head.
 			for x in 1...atIndex{
-				node = node?.next
+				node = node?.next //Then move to the next node
 				if x == atIndex{
 					node?.previous?.next = node?.next
 				}
 			}
 		}
+	}
+	
+	
+	//get the index of a value
+	func getIndex(ofValue:String) -> Int?{
+		
+		guard (head != nil) else { return nil}
+		var index:Int = 0
+		var node = head! //Start at root node
+		while (node.next != nil) {
+			
+			//Found it?
+			if node.value == ofValue{
+				return index
+			}
+			
+			//Check if we are the tail before moving out of loop
+			if node.next!.next == nil {
+				if node.next!.value == ofValue {
+					return index + 1
+				}
+			}
+			
+			//Move forward
+			node = node.next!
+			index += 1
+		}
+		
+		return nil
 	}
 	
 }
@@ -84,6 +116,7 @@ newLinkedList.head?.next?.value
 newLinkedList.addNode(value: "World")
 newLinkedList.head?.next?.value
 newLinkedList.addNode(value: "This is a linked list of 3 strings")
+newLinkedList.getIndex(ofValue: "This is a linked list of 3 strings")
 newLinkedList.head?.next?.next?.value
 //Remove "World"
 newLinkedList.removeNode(atIndex: 1)
