@@ -32,3 +32,33 @@ func challenge15(input: String) -> String {
 	let reversed = parts.map { String($0.reversed()) }
 	return reversed.joined(separator: " ")
 }
+
+
+///Just some notes for functional programming.
+let array = ["56", "88", "Fish", "90"]
+let arrayTwo:[Any] = [56, 88, "Fish", 90]
+let result = array.compactMap({Int($0)})
+let resultTwo = arrayTwo.compactMap({ $0 as? Int}).reduce(0) { $0 + $1 }
+//let resultTwo = arrayTwo.compactMap({ $0 as? Int}).reduce(0) { (acumulator, number) ->Int in
+//	acumulator + number
+//}
+let resultThree = arrayTwo.compactMap({ $0 as? Int}).reduce(0, +)
+print(result)
+print(resultTwo)
+print(resultThree)
+
+
+extension Int {
+	// iterates the closure body a specified number of times
+	func times(closure: (Int) -> Void) {
+		for i in 0 ..< self {
+			closure(i)
+		}
+	}
+}
+
+let int = 10
+int.times { (number) in
+	print("Hello \(number)")
+}
+
